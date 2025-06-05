@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Games | PlayMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="css/output.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', Arial, sans-serif; }
+        h1, h2, h3 { font-family: 'Fredoka', 'Quicksand', Arial, sans-serif; }
+        .bubble { position: absolute; border-radius: 50%; opacity: 0.15; z-index: 0; animation: float 12s infinite linear; }
+        @keyframes float { 0% { transform: translateY(0);} 100% { transform: translateY(-100vh);} }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-200 via-pink-100 to-yellow-100 min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Decorative Bubbles -->
+    <div class="bubble bg-blue-400" style="width:120px; height:120px; left:10%; top:80%; animation-delay:0s;"></div>
+    <div class="bubble bg-pink-300" style="width:80px; height:80px; left:70%; top:90%; animation-delay:2s;"></div>
+    <div class="bubble bg-yellow-300" style="width:100px; height:100px; left:50%; top:85%; animation-delay:4s;"></div>
+    <header class="bg-white shadow-md py-6 relative z-10">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-4xl font-extrabold text-blue-700 flex items-center gap-2">
+                <span>🎲</span> PlayMath
+            </h1>
+            <nav>
+                <a href="index.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Home</a>
+                <a href="games.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Games</a>
+                <a href="about.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">About</a>
+                <a href="feedback.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col items-center justify-center text-center py-12 px-4 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-4 drop-shadow-lg">
+            Math Games
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl">
+            Choose a game and start learning while having fun!
+        </p>
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl w-full">
+            <!-- Counting Fun Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-blue-200 hover:border-pink-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-blue-700 mb-2 flex items-center gap-2">🔢 Counting Fun</h3>
+                <p class="text-gray-600 mb-4">Count the objects and pick the right answer!</p>
+                <button onclick="openGame('counting')" class="bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-full hover:bg-blue-200 transition">Play</button>
+            </div>
+            <!-- Add & Subtract Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-pink-200 hover:border-yellow-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-pink-600 mb-2 flex items-center gap-2">➕➖ Add & Subtract</h3>
+                <p class="text-gray-600 mb-4">Solve the math problems as fast as you can!</p>
+                <button onclick="openGame('addsub')" class="bg-pink-100 text-pink-700 font-semibold px-4 py-2 rounded-full hover:bg-pink-200 transition">Play</button>
+            </div>
+            <!-- Math Puzzles Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-yellow-200 hover:border-blue-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-yellow-600 mb-2 flex items-center gap-2">🧩 Math Puzzles</h3>
+                <p class="text-gray-600 mb-4">Solve the puzzle and unlock a star!</p>
+                <button onclick="openGame('puzzle')" class="bg-yellow-100 text-yellow-700 font-semibold px-4 py-2 rounded-full hover:bg-yellow-200 transition">Play</button>
+            </div>
+            <!-- Shape Match Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-green-200 hover:border-blue-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-green-600 mb-2 flex items-center gap-2">🔷 Shape Match</h3>
+                <p class="text-gray-600 mb-4">Find the shape that matches the picture!</p>
+                <button onclick="openGame('shapematch')" class="bg-green-100 text-green-700 font-semibold px-4 py-2 rounded-full hover:bg-green-200 transition">Play</button>
+            </div>
+            <!-- Multiplication Mania Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-orange-200 hover:border-pink-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-orange-600 mb-2 flex items-center gap-2">✖️ Multiplication Mania</h3>
+                <p class="text-gray-600 mb-4">Test your multiplication skills with quick-fire questions!</p>
+                <button onclick="openGame('multiplication')" class="bg-orange-100 text-orange-700 font-semibold px-4 py-2 rounded-full hover:bg-orange-200 transition">Play</button>
+            </div>
+            <!-- Odd or Even Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-indigo-200 hover:border-pink-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-indigo-600 mb-2 flex items-center gap-2">🔢 Odd or Even</h3>
+                <p class="text-gray-600 mb-4">Is the number odd or even? Test your speed!</p>
+                <button onclick="openGame('oddoreven')" class="bg-indigo-100 text-indigo-700 font-semibold px-4 py-2 rounded-full hover:bg-indigo-200 transition">Play</button>
+            </div>
+            <!-- Division Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-cyan-200 hover:border-blue-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-cyan-600 mb-2 flex items-center gap-2">➗ Division Dash</h3>
+                <p class="text-gray-600 mb-4">Quick! What’s the answer to this division problem?</p>
+                <button onclick="openGame('division')" class="bg-cyan-100 text-cyan-700 font-semibold px-4 py-2 rounded-full hover:bg-cyan-200 transition">Play</button>
+            </div>
+            <!-- Algebra Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-rose-200 hover:border-blue-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-rose-600 mb-2 flex items-center gap-2">🔎 Find X!</h3>
+                <p class="text-gray-600 mb-4">Solve for X in a simple equation.</p>
+                <button onclick="openGame('algebra')" class="bg-rose-100 text-rose-700 font-semibold px-4 py-2 rounded-full hover:bg-rose-200 transition">Play</button>
+            </div>
+            <!-- Financial Math Game Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-amber-200 hover:border-green-300 transition transform hover:-translate-y-2">
+                <h3 class="text-2xl font-bold text-amber-600 mb-2 flex items-center gap-2">💰 Money Math</h3>
+                <p class="text-gray-600 mb-4">Count coins and bills to reach the right amount!</p>
+                <button onclick="openGame('finance')" class="bg-amber-100 text-amber-700 font-semibold px-4 py-2 rounded-full hover:bg-amber-200 transition">Play</button>
+            </div>
+        </div>
+        <!-- Game Modals -->
+        <div id="gameModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+                <button onclick="closeGame()" class="absolute top-2 right-4 text-2xl text-gray-400 hover:text-pink-500">&times;</button>
+                <div id="gameContent"></div>
+            </div>
+        </div>
+        <script>
+        // --- Modal Logic ---
+        function openGame(game) {
+            document.getElementById('gameModal').classList.remove('hidden');
+            document.getElementById('gameContent').innerHTML = `<div class="animate-pulse">Loading ${game}...</div>`;
+            setTimeout(() => {
+                if (game === 'counting') {
+                    startCountingGame();
+                } else if (game === 'addsub') {
+                    startAddSubGame();
+                } else if (game === 'puzzle') {
+                    startPuzzleGame();
+                } else if (game === 'shapematch') {
+                    startShapeMatchGame();
+                } else if (game === 'multiplication') {
+                    startMultiplicationGame();
+                } else if (game === 'oddoreven') {
+                    startOddEvenGame();
+                } else if (game === 'division') {
+                    startDivisionGame();
+                } else if (game === 'algebra') {
+                    startAlgebraGame();
+                } else if (game === 'finance') {
+                    startFinanceGame();
+                }
+            }, 500);
+        }
+
+
+        function closeGame() {
+            document.getElementById('gameModal').classList.add('hidden');
+            document.getElementById('gameContent').innerHTML = '';
+        }
+        //counting game
+        function startCountingGame() {
+            // Show a random number of objects (emoji) and ask to count
+            const emojis = ['🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍋', '🍊'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const count = Math.floor(Math.random() * 7) + 3;
+            let options = [count];
+            while (options.length < 3) {
+                let fake = count + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                if (fake > 0 && !options.includes(fake)) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-blue-700 mb-2">Counting Fun</h3>
+                <div class="text-4xl mb-4">${Array(count).fill(emoji).join(' ')}</div>
+                <div class="mb-4">How many ${emoji}?</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkCounting(${n},${count})" class="bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-blue-200 transition">${n}</button>`).join('')}
+                </div>
+                <div id="countingResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkCounting(selected, correct) {
+            const res = document.getElementById('countingResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+                setTimeout(startCountingGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startAddSubGame() {
+            // Randomly choose addition or subtraction
+            const isAdd = Math.random() > 0.5;
+            let a = Math.floor(Math.random() * 20) + 1;
+            let b = Math.floor(Math.random() * 20) + 1;
+            if (!isAdd && b > a) [a, b] = [b, a];
+            const answer = isAdd ? a + b : a - b;
+            let options = [answer];
+            while (options.length < 3) {
+                let fake = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 4) + 1);
+                if (!options.includes(fake) && fake >= 0) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-pink-600 mb-2">Add & Subtract</h3>
+                <div class="mb-4 text-2xl">${a} ${isAdd ? '+' : '-'} ${b} = ?</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkAddSub(${n},${answer})" class="bg-pink-100 text-pink-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-pink-200 transition">${n}</button>`).join('')}
+                </div>
+                <div id="addSubResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkAddSub(selected, correct) {
+            const res = document.getElementById('addSubResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+                setTimeout(startAddSubGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startPuzzleGame() {
+            // Simple pattern or sequence puzzle
+            const type = Math.random() > 0.5 ? 'sequence' : 'missing';
+            let question = '', answer = 0, options = [];
+            if (type === 'sequence') {
+                // Arithmetic sequence
+                let start = Math.floor(Math.random() * 10) + 1;
+                let diff = Math.floor(Math.random() * 5) + 1;
+                let seq = [start, start + diff, start + 2 * diff, start + 3 * diff];
+                answer = start + 4 * diff;
+                options = [answer];
+                while (options.length < 3) {
+                    let fake = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                    if (!options.includes(fake)) options.push(fake);
+                }
+                options = options.sort(() => Math.random() - 0.5);
+                question = `What comes next? <span class="font-mono">${seq.join(', ')}, ...</span>`;
+            } else {
+                // Find missing number
+                let a = Math.floor(Math.random() * 10) + 2;
+                let b = a + Math.floor(Math.random() * 5) + 1;
+                let c = b + Math.floor(Math.random() * 5) + 1;
+                let arr = [a, b, c];
+                let idx = Math.floor(Math.random() * 3);
+                answer = arr[idx];
+                let display = arr.map((n, i) => i === idx ? '___' : n).join(', ');
+                options = [answer];
+                while (options.length < 3) {
+                    let fake = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                    if (!options.includes(fake) && fake > 0) options.push(fake);
+                }
+                options = options.sort(() => Math.random() - 0.5);
+                question = `Fill in the missing number: <span class="font-mono">${display}</span>`;
+            }
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-yellow-600 mb-2">Math Puzzle</h3>
+                <div class="mb-4">${question}</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkPuzzle(${n},${answer})" class="bg-yellow-100 text-yellow-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-yellow-200 transition">${n}</button>`).join('')}
+                </div>
+                <div id="puzzleResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkPuzzle(selected, correct) {
+            const res = document.getElementById('puzzleResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">⭐ Correct!</span>';
+                setTimeout(startPuzzleGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startMultiplicationGame() {
+            // Show a multiplication question with 2 numbers between 2 and 12
+            const a = Math.floor(Math.random() * 11) + 2;
+            const b = Math.floor(Math.random() * 11) + 2;
+            const answer = a * b;
+            let options = [answer];
+            while (options.length < 3) {
+            let fake = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 10) + 1);
+            if (fake > 0 && !options.includes(fake)) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+            document.getElementById('gameContent').innerHTML = `
+            <h3 class="text-xl font-bold text-orange-600 mb-2">Multiplication Mania</h3>
+            <div class="mb-4 text-2xl">${a} × ${b} = ?</div>
+            <div>
+                ${options.map(n => `<button onclick="checkMultiplication(${n},${answer})" class="bg-orange-100 text-orange-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-orange-200 transition">${n}</button>`).join('')}
+            </div>
+            <div id="multiplicationResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkMultiplication(selected, correct) {
+            const res = document.getElementById('multiplicationResult');
+            if (selected === correct) {
+            res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+            setTimeout(startMultiplicationGame, 1200);
+            } else {
+            res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startOddEvenGame() {
+            // Show a number, ask if odd or even
+            const number = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-indigo-600 mb-2">Odd or Even</h3>
+                <div class="mb-4 text-4xl">${number}</div>
+                <div>
+                    <button onclick="checkOddEven('even',${number})" class="bg-indigo-100 text-indigo-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-indigo-200 transition">Even</button>
+                    <button onclick="checkOddEven('odd',${number})" class="bg-indigo-100 text-indigo-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-indigo-200 transition">Odd</button>
+                </div>
+                <div id="oddEvenResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkOddEven(choice, number) {
+            const res = document.getElementById('oddEvenResult');
+            const correct = number % 2 === 0 ? 'even' : 'odd';
+            if (choice === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+                setTimeout(startOddEvenGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startDivisionGame() {
+            // Simple division with integer result
+            let b = Math.floor(Math.random() * 12) + 2;
+            let answer = Math.floor(Math.random() * 12) + 2;
+            let a = b * answer;
+            let options = [answer];
+            while (options.length < 3) {
+                let fake = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                if (fake > 0 && !options.includes(fake)) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-cyan-600 mb-2">Division Dash</h3>
+                <div class="mb-4 text-2xl">${a} &divide; ${b} = ?</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkDivision(${n},${answer})" class="bg-cyan-100 text-cyan-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-cyan-200 transition">${n}</button>`).join('')}
+                </div>
+                <div id="divisionResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkDivision(selected, correct) {
+            const res = document.getElementById('divisionResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+                setTimeout(startDivisionGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        function startAlgebraGame() {
+            // Solve for x in ax + b = c
+            let a = Math.floor(Math.random() * 5) + 2;
+            let x = Math.floor(Math.random() * 10) + 1;
+            let b = Math.floor(Math.random() * 10);
+            let c = a * x + b;
+            let options = [x];
+            while (options.length < 3) {
+                let fake = x + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                if (fake > 0 && !options.includes(fake)) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-rose-600 mb-2">Find X!</h3>
+                <div class="mb-4 text-2xl">${a}x + ${b} = ${c}</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkAlgebra(${n},${x})" class="bg-rose-100 text-rose-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-rose-200 transition">${n}</button>`).join('')}
+                </div>
+                <div id="algebraResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkAlgebra(selected, correct) {
+            const res = document.getElementById('algebraResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🔎 Correct!</span>';
+                setTimeout(startAlgebraGame, 1200);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        // --- Financial Math Game (Nigerian Scheme: Profit, Loss, SP, CP, SI, CI) ---
+        function startFinanceGame() {
+            // Randomly pick a topic
+            const topics = ['profit', 'loss', 'sp', 'cp', 'si', 'ci'];
+            const topic = topics[Math.floor(Math.random() * topics.length)];
+            let question = '';
+            let answer = 0;
+            let options = [];
+            let formula = '';
+            let naira = n => `₦${n.toLocaleString()}`;
+
+            if (topic === 'profit') {
+                // Find profit
+                let cp = Math.floor(Math.random() * 900) + 100;
+                let sp = cp + Math.floor(Math.random() * 400) + 50;
+                answer = sp - cp;
+                options = [answer, answer + 10, answer - 10].sort(() => Math.random() - 0.5);
+                question = `A trader bought an item for ${naira(cp)} and sold it for ${naira(sp)}. What is the profit?`;
+                formula = 'Profit = Selling Price - Cost Price';
+            } else if (topic === 'loss') {
+                // Find loss
+                let cp = Math.floor(Math.random() * 900) + 100;
+                let sp = cp - Math.floor(Math.random() * 400) - 10;
+                answer = cp - sp;
+                options = [answer, answer + 10, answer - 10].sort(() => Math.random() - 0.5);
+                question = `A trader bought an item for ${naira(cp)} and sold it for ${naira(sp)}. What is the loss?`;
+                formula = 'Loss = Cost Price - Selling Price';
+            } else if (topic === 'sp') {
+                // Find selling price
+                let cp = Math.floor(Math.random() * 900) + 100;
+                let profit = Math.floor(Math.random() * 400) + 20;
+                answer = cp + profit;
+                options = [answer, answer + 10, answer - 10].sort(() => Math.random() - 0.5);
+                question = `If the cost price is ${naira(cp)} and the profit is ${naira(profit)}, what is the selling price?`;
+                formula = 'Selling Price = Cost Price + Profit';
+            } else if (topic === 'cp') {
+                // Find cost price
+                let sp = Math.floor(Math.random() * 900) + 200;
+                let loss = Math.floor(Math.random() * 200) + 10;
+                answer = sp + loss;
+                options = [answer, answer + 10, answer - 10].sort(() => Math.random() - 0.5);
+                question = `If the selling price is ${naira(sp)} and the loss is ${naira(loss)}, what is the cost price?`;
+                formula = 'Cost Price = Selling Price + Loss';
+            } else if (topic === 'si') {
+                // Simple Interest
+                let p = Math.floor(Math.random() * 9000) + 1000;
+                let r = Math.floor(Math.random() * 10) + 1;
+                let t = Math.floor(Math.random() * 5) + 1;
+                answer = Math.round((p * r * t) / 100);
+                options = [answer, answer + 100, answer - 100].sort(() => Math.random() - 0.5);
+                question = `Find the simple interest on ${naira(p)} for ${t} years at ${r}% per annum.`;
+                formula = 'SI = (P × R × T) / 100';
+            } else if (topic === 'ci') {
+                // Compound Interest (rounded to nearest naira)
+                let p = Math.floor(Math.random() * 9000) + 1000;
+                let r = Math.floor(Math.random() * 10) + 1;
+                let t = Math.floor(Math.random() * 3) + 2;
+                let amount = p * Math.pow(1 + r / 100, t);
+                answer = Math.round(amount - p);
+                options = [answer, answer + 100, answer - 100].sort(() => Math.random() - 0.5);
+                question = `Find the compound interest on ${naira(p)} for ${t} years at ${r}% per annum.`;
+                formula = 'CI = P[(1 + R/100)^T - 1]';
+            }
+
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-amber-600 mb-2">Financial Math</h3>
+                <div class="mb-4">${question}</div>
+                <div class="mb-2 text-sm text-gray-500 italic">${formula}</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkFinance(${n},${answer})" class="bg-amber-100 text-amber-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-amber-200 transition">${naira(n)}</button>`).join('')}
+                </div>
+                <div id="financeResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkFinance(selected, correct) {
+            const res = document.getElementById('financeResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">💰 Correct!</span>';
+                setTimeout(startFinanceGame, 1500);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        // --- Shape Game: 2D & 3D Shapes with Calculations ---
+        function startShapeMatchGame() {
+            // Define 2D and 3D shapes with their attributes and formulas
+            const shapes = [
+                {
+                    name: "Circle",
+                    emoji: "⚪",
+                    type: "2D",
+                    questions: [
+                        {
+                            q: "What is the area of a circle with radius {r} cm?",
+                            formula: "Area = π × r²",
+                            calc: ({r}) => Math.round(Math.PI * r * r),
+                            vars: () => ({r: Math.floor(Math.random() * 9) + 2}),
+                            unit: "cm²"
+                        },
+                        {
+                            q: "What is the perimeter (circumference) of a circle with radius {r} cm?",
+                            formula: "Perimeter = 2 × π × r",
+                            calc: ({r}) => Math.round(2 * Math.PI * r),
+                            vars: () => ({r: Math.floor(Math.random() * 9) + 2}),
+                            unit: "cm"
+                        }
+                    ]
+                },
+                {
+                    name: "Square",
+                    emoji: "🟦",
+                    type: "2D",
+                    questions: [
+                        {
+                            q: "What is the area of a square with side {a} cm?",
+                            formula: "Area = a²",
+                            calc: ({a}) => a * a,
+                            vars: () => ({a: Math.floor(Math.random() * 9) + 2}),
+                            unit: "cm²"
+                        },
+                        {
+                            q: "What is the perimeter of a square with side {a} cm?",
+                            formula: "Perimeter = 4 × a",
+                            calc: ({a}) => 4 * a,
+                            vars: () => ({a: Math.floor(Math.random() * 9) + 2}),
+                            unit: "cm"
+                        }
+                    ]
+                },
+                {
+                    name: "Rectangle",
+                    emoji: "▭",
+                    type: "2D",
+                    questions: [
+                        {
+                            q: "What is the area of a rectangle with length {l} cm and width {w} cm?",
+                            formula: "Area = l × w",
+                            calc: ({l, w}) => l * w,
+                            vars: () => {
+                                let l = Math.floor(Math.random() * 9) + 3;
+                                let w = Math.floor(Math.random() * (l-2)) + 2;
+                                return {l, w};
+                            },
+                            unit: "cm²"
+                        },
+                        {
+                            q: "What is the perimeter of a rectangle with length {l} cm and width {w} cm?",
+                            formula: "Perimeter = 2 × (l + w)",
+                            calc: ({l, w}) => 2 * (l + w),
+                            vars: () => {
+                                let l = Math.floor(Math.random() * 9) + 3;
+                                let w = Math.floor(Math.random() * (l-2)) + 2;
+                                return {l, w};
+                            },
+                            unit: "cm"
+                        }
+                    ]
+                },
+                {
+                    name: "Triangle",
+                    emoji: "🔺",
+                    type: "2D",
+                    questions: [
+                        {
+                            q: "What is the area of a triangle with base {b} cm and height {h} cm?",
+                            formula: "Area = ½ × b × h",
+                            calc: ({b, h}) => Math.round(0.5 * b * h),
+                            vars: () => ({b: Math.floor(Math.random() * 9) + 2, h: Math.floor(Math.random() * 9) + 2}),
+                            unit: "cm²"
+                        },
+                        {
+                            q: "What is the perimeter of a triangle with sides {a} cm, {b} cm, and {c} cm?",
+                            formula: "Perimeter = a + b + c",
+                            calc: ({a, b, c}) => a + b + c,
+                            vars: () => {
+                                let a = Math.floor(Math.random() * 8) + 3;
+                                let b = Math.floor(Math.random() * 8) + 3;
+                                let c = Math.floor(Math.random() * 8) + 3;
+                                return {a, b, c};
+                            },
+                            unit: "cm"
+                        }
+                    ]
+                },
+                // 3D Shapes
+                {
+                    name: "Cube",
+                    emoji: "🧊",
+                    type: "3D",
+                    questions: [
+                        {
+                            q: "What is the volume of a cube with side {a} cm?",
+                            formula: "Volume = a³",
+                            calc: ({a}) => a * a * a,
+                            vars: () => ({a: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm³"
+                        },
+                        {
+                            q: "What is the surface area of a cube with side {a} cm?",
+                            formula: "Surface Area = 6 × a²",
+                            calc: ({a}) => 6 * a * a,
+                            vars: () => ({a: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm²"
+                        }
+                    ]
+                },
+                {
+                    name: "Cuboid",
+                    emoji: "📦",
+                    type: "3D",
+                    questions: [
+                        {
+                            q: "What is the volume of a cuboid with length {l} cm, width {w} cm, and height {h} cm?",
+                            formula: "Volume = l × w × h",
+                            calc: ({l, w, h}) => l * w * h,
+                            vars: () => {
+                                let l = Math.floor(Math.random() * 8) + 3;
+                                let w = Math.floor(Math.random() * 8) + 2;
+                                let h = Math.floor(Math.random() * 8) + 2;
+                                return {l, w, h};
+                            },
+                            unit: "cm³"
+                        },
+                        {
+                            q: "What is the surface area of a cuboid with length {l} cm, width {w} cm, and height {h} cm?",
+                            formula: "Surface Area = 2(lw + lh + wh)",
+                            calc: ({l, w, h}) => 2 * (l * w + l * h + w * h),
+                            vars: () => {
+                                let l = Math.floor(Math.random() * 8) + 3;
+                                let w = Math.floor(Math.random() * 8) + 2;
+                                let h = Math.floor(Math.random() * 8) + 2;
+                                return {l, w, h};
+                            },
+                            unit: "cm²"
+                        }
+                    ]
+                },
+                {
+                    name: "Cylinder",
+                    emoji: "🛢️",
+                    type: "3D",
+                    questions: [
+                        {
+                            q: "What is the volume of a cylinder with radius {r} cm and height {h} cm? (π ≈ 3.14)",
+                            formula: "Volume = π × r² × h",
+                            calc: ({r, h}) => Math.round(3.14 * r * r * h),
+                            vars: () => ({r: Math.floor(Math.random() * 8) + 2, h: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm³"
+                        },
+                        {
+                            q: "What is the curved surface area of a cylinder with radius {r} cm and height {h} cm? (π ≈ 3.14)",
+                            formula: "Curved Surface Area = 2 × π × r × h",
+                            calc: ({r, h}) => Math.round(2 * 3.14 * r * h),
+                            vars: () => ({r: Math.floor(Math.random() * 8) + 2, h: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm²"
+                        }
+                    ]
+                },
+                {
+                    name: "Sphere",
+                    emoji: "🌐",
+                    type: "3D",
+                    questions: [
+                        {
+                            q: "What is the volume of a sphere with radius {r} cm? (π ≈ 3.14)",
+                            formula: "Volume = (4/3) × π × r³",
+                            calc: ({r}) => Math.round((4/3) * 3.14 * r * r * r),
+                            vars: () => ({r: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm³"
+                        },
+                        {
+                            q: "What is the surface area of a sphere with radius {r} cm? (π ≈ 3.14)",
+                            formula: "Surface Area = 4 × π × r²",
+                            calc: ({r}) => Math.round(4 * 3.14 * r * r),
+                            vars: () => ({r: Math.floor(Math.random() * 8) + 2}),
+                            unit: "cm²"
+                        }
+                    ]
+                }
+            ];
+
+            // Randomly pick a shape and a question for it
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            const qObj = shape.questions[Math.floor(Math.random() * shape.questions.length)];
+            const vars = qObj.vars();
+            const answer = qObj.calc(vars);
+
+            // Generate options
+            let options = [answer];
+            while (options.length < 3) {
+                let delta = Math.floor(Math.random() * 10) + 1;
+                let fake = Math.random() > 0.5 ? answer + delta : answer - delta;
+                if (fake > 0 && !options.includes(fake)) options.push(fake);
+            }
+            options = options.sort(() => Math.random() - 0.5);
+
+            // Replace variables in question
+            let questionText = qObj.q.replace(/\{(\w+)\}/g, (_, v) => vars[v]);
+
+            document.getElementById('gameContent').innerHTML = `
+                <h3 class="text-xl font-bold text-green-600 mb-2">${shape.emoji} ${shape.name} (${shape.type})</h3>
+                <div class="mb-4">${questionText}</div>
+                <div class="mb-2 text-sm text-gray-500 italic">${qObj.formula}</div>
+                <div>
+                    ${options.map(n => `<button onclick="checkShapeMatch(${n},${answer})" class="bg-green-100 text-green-700 font-semibold px-4 py-2 rounded-full m-2 hover:bg-green-200 transition">${n} ${qObj.unit}</button>`).join('')}
+                </div>
+                <div id="shapeMatchResult" class="mt-4 text-lg"></div>
+            `;
+        }
+        function checkShapeMatch(selected, correct) {
+            const res = document.getElementById('shapeMatchResult');
+            if (selected === correct) {
+                res.innerHTML = '<span class="text-green-600 font-bold">🎉 Correct!</span>';
+                setTimeout(startShapeMatchGame, 1500);
+            } else {
+                res.innerHTML = '<span class="text-pink-600 font-bold">Try again!</span>';
+            }
+        }
+
+        // ...rest of your script unchanged...
+        </script>
+        <!-- Fun Facts Section -->
+        <section class="mt-16 max-w-3xl w-full bg-white bg-opacity-80 rounded-2xl shadow-lg p-8 border-2 border-blue-100">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4 flex items-center gap-2">🎉 Fun Math Facts</h3>
+            <ul class="text-lg text-gray-700 list-disc list-inside space-y-2 text-left">
+                <li>Zero is the only number that can't be represented in Roman numerals.</li>
+                <li>A circle has the largest area of any shape with the same perimeter.</li>
+                <li>The word "hundred" comes from the old Norse term, "hundrath," which actually means 120!</li>
+                <li>There are infinitely many prime numbers.</li>
+            </ul>
+        </section>
+        <!-- Suggest a Game Section -->
+        <section class="mt-12 max-w-xl w-full bg-yellow-50 rounded-2xl shadow p-6 border-2 border-yellow-200">
+            <h3 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2">💡 Suggest a Game!</h3>
+            <p class="mb-4 text-gray-700">Have an idea for a new math game? Let us know!</p>
+            <form>
+                <input type="text" placeholder="Your game idea..." class="w-full px-4 py-2 rounded-lg border border-yellow-300 mb-2 focus:outline-none focus:ring-2 focus:ring-yellow-200" required>
+                <button type="submit" class="bg-yellow-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-yellow-500 transition">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 text-center py-6 text-gray-500 text-sm mt-12 relative z-10">
+        &copy; 2024 PlayMath. All rights reserved. 
+    </footer>
+</body>
+</html>

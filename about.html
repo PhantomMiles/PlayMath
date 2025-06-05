@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About | PlayMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="css/output.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', Arial, sans-serif; }
+        h1, h2, h3 { font-family: 'Fredoka', 'Quicksand', Arial, sans-serif; }
+        .bubble { position: absolute; border-radius: 50%; opacity: 0.15; z-index: 0; animation: float 12s infinite linear; }
+        @keyframes float { 0% { transform: translateY(0);} 100% { transform: translateY(-100vh);} }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-200 via-pink-100 to-yellow-100 min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Decorative Bubbles -->
+    <div class="bubble bg-blue-400" style="width:120px; height:120px; left:10%; top:80%; animation-delay:0s;"></div>
+    <div class="bubble bg-pink-300" style="width:80px; height:80px; left:70%; top:90%; animation-delay:2s;"></div>
+    <div class="bubble bg-yellow-300" style="width:100px; height:100px; left:50%; top:85%; animation-delay:4s;"></div>
+    <header class="bg-white shadow-md py-6 relative z-10">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-4xl font-extrabold text-blue-700 flex items-center gap-2">
+                <span>🎲</span> PlayMath
+            </h1>
+            <nav>
+                <a href="index.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Home</a>
+                <a href="games.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Games</a>
+                <a href="about.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">About</a>
+                <a href="feedback.html" class="text-blue-600 hover:text-pink-500 font-semibold mx-3 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col items-center justify-center text-center py-12 px-4 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-4 drop-shadow-lg">
+            About PlayMath
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl">
+            PlayMath is a free, fun, and safe place for kids to learn math through games and puzzles.
+        </p>
+        <div class="bg-white rounded-3xl shadow-xl p-8 border-4 border-blue-200 max-w-3xl w-full mb-8">
+            <h3 class="text-2xl font-bold text-pink-600 mb-2 flex items-center gap-2">🎯 Our Mission</h3>
+            <p class="text-gray-600 mb-4">
+                We believe every child can enjoy math! Our mission is to make learning math playful, engaging, and accessible for all children.
+            </p>
+            <h3 class="text-2xl font-bold text-yellow-600 mb-2 flex items-center gap-2">🧩 What We Offer</h3>
+            <ul class="text-gray-600 list-disc list-inside mb-4 text-left">
+                <li>Interactive games for counting, addition, subtraction, and more</li>
+                <li>Colorful puzzles to boost problem-solving skills</li>
+                <li>Achievements to motivate and reward learning</li>
+                <li>No sign-up, no ads, always free</li>
+            </ul>
+            <h3 class="text-2xl font-bold text-blue-700 mb-2 flex items-center gap-2">🌟 Safe & Friendly</h3>
+            <p class="text-gray-600">
+                PlayMath is designed for kids ages 0–10, but anyone can play. We never collect personal data and keep everything kid-friendly.
+            </p>
+        </div>
+    </main>
+    <footer class="bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 text-center py-6 text-gray-500 text-sm mt-12 relative z-10">
+        &copy; 2024 PlayMath. All rights reserved. 
+    </footer>
+</body>
+</html>
